@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, Send, User, MessageSquare, CheckCircle, AlertCircle, Phone } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
+  // Initialiser EmailJS avec la clé publique
+  useEffect(() => {
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    if (publicKey) {
+      emailjs.init(publicKey);
+    }
+  }, []);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -25,12 +32,15 @@ const Contact: React.FC = () => {
     setStatus('idle');
 
     try {
-      // Configuration EmailJS depuis les variables d'environnement
+      // Vérifier que les variables d'environnement sont définies
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const autoReplyTemplateId = import.meta.env.VITE_EMAILJS_AUTO_REPLY_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
       const contactEmail = import.meta.env.VITE_CONTACT_EMAIL;
+
+      if (!serviceId || !templateId || !contactEmail) {
+        throw new Error('Configuration EmailJS manquante. Vérifiez vos variables d\'environnement.');
+      }
 
       // Paramètres pour le message principal (vers vous)
       const templateParams = {
@@ -41,19 +51,26 @@ const Contact: React.FC = () => {
         to_email: contactEmail
       };
 
-      // Paramètres pour la réponse automatique (vers l'expéditeur)
-      const autoReplyParams = {
-        from_name: formData.name,
-        from_phone: formData.phone,
-        from_email: formData.email,
-        message: formData.message
-      };
-
       // Envoi du message principal
-      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      await emailjs.send(serviceId, templateId, templateParams);
       
-      // Envoi de la réponse automatique
-      await emailjs.send(serviceId, autoReplyTemplateId, autoReplyParams, publicKey);
+      // Envoi de la réponse automatique (si configurée)
+      if (autoReplyTemplateId) {
+        const autoReplyParams = {
+          from_name: formData.name,
+          from_phone: formData.phone,
+          from_email: formData.email,
+          message: formData.message,
+          to_email: formData.email // Envoyer la réponse à l'expéditeur
+        };
+        
+        try {
+          await emailjs.send(serviceId, autoReplyTemplateId, autoReplyParams);
+        } catch (autoReplyError) {
+          console.warn('Erreur lors de l\'envoi de la réponse automatique:', autoReplyError);
+          // Ne pas faire échouer le processus principal si la réponse automatique échoue
+        }
+      }
       
       setStatus('success');
       setFormData({ name: '', phone: '', email: '', message: '' });
