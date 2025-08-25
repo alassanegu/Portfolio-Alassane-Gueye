@@ -8,24 +8,24 @@ const Experience: React.FC = () => {
       company: "Désirade",
       location: "Lyon",
       period: "Janvier 2025 – Avril 2025",
-      description: "Direction de projets de développement et coordination d'équipes techniques.",
-      technologies: ["Management", "Développement", "Coordination"]
+      description: "Direction de projets de développement, développement de solutions Power Platform, développement d'applications web.",
+      technologies: ["Développement", "Coordination", "Power Platform", ".NET", "Lagoon", "SqlServer"]
     },
     {
       title: "Solution Owner (Alternance)",
       company: "Oril Industrie",
       location: "Bolbec",
       period: "Septembre 2023 – Septembre 2024",
-      description: "Développement de solutions Power Platform, analyse des besoins métier et création d'applications personnalisées.",
-      technologies: ["Power Apps", "Power Automate", "Power BI", "SharePoint"]
+      description: "Développement de solutions Power Platform, analyse des besoins métier et création d'applications web.",
+      technologies: ["Power Apps", "Power Automate", "Power BI", "SharePoint", "ASP.NET", ".NET", "WebForm", "SqlServer"]
     },
     {
       title: "Développeur Full Stack (Stage)",
       company: "Agence DBCOM",
       location: "Le Havre",
       period: "Janvier 2023 – Juin 2023",
-      description: "Développement d'applications web complètes, de la conception à la mise en production.",
-      technologies: ["JavaScript", "PHP", "React", "MySQL"]
+      description: "Développement d'applications web complètes avec CMS, de la conception à la mise en production, avec une attention particulière à l'UX/UI et à la performance et la sécurité.",
+      technologies: ["JavaScript", "PHP", "Joomla", "WordPress", "MySQL"]
     },
     {
       title: "Projet universitaire",
