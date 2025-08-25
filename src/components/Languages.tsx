@@ -4,7 +4,7 @@ import { Globe, Users, Lightbulb, Target, Heart, Zap } from 'lucide-react';
 const Languages: React.FC = () => {
   const languages = [
     { name: "Français", level: "Courant", flag: "🇫🇷" },
-    { name: "Anglais", level: "Courant", flag: "🇬🇧" },
+    { name: "Anglais", level: "Scolaire", flag: "🇬🇧" },
     { name: "Wolof", level: "Maternelle", flag: "🇸🇳" }
   ];
 
