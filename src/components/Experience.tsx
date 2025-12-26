@@ -7,7 +7,7 @@ const Experience: React.FC = () => {
       title: "Ingénieur chef de projet développeur",
       company: "Désirade",
       location: "Lyon",
-      period: "Janvier 2025 – Avril 2025",
+      period: "Janvier 2025 – Aujourd'hui",
       description: "Direction de projets de développement, développement de solutions Power Platform, développement d'applications web.",
       technologies: ["Développement", "Coordination", "Power Platform", ".NET", "Lagoon", "SqlServer"]
     },
@@ -15,7 +15,7 @@ const Experience: React.FC = () => {
       title: "Solution Owner (Alternance)",
       company: "Oril Industrie",
       location: "Bolbec",
-      period: "Septembre 2023 – Septembre 2024",
+      period: "Septembre 2022 – Septembre 2024",
       description: "Développement de solutions Power Platform, analyse des besoins métier et création d'applications web.",
       technologies: ["Power Apps", "Power Automate", "Power BI", "SharePoint", "ASP.NET", ".NET", "WebForm", "SqlServer"]
     },
